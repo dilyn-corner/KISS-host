@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+make \
+    USE_JEMALLOC=no \
+    MALLOC=libc \
+    FINAL_LIBS="-lm -ldl -pthread" \
+    all
+
+make PREFIX=/usr INSTALL_BIN="$1/usr/bin" install
+
+install -Dm644 redis.conf    "$1/etc/redis.conf"
+install -Dm755 redis.run     "$1/etc/sv/redis/run"
+install -Dm644 sentinal.conf "$1/etc/sentinal.conf"

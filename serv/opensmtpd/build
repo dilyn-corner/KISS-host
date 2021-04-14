@@ -1,0 +1,15 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --sbindir=/usr/bin \
+    --sysconfdir=/etc \
+    --localstatedir=/var \
+    --with-user-smtpd=smtpd \
+    --with-user-queue=smtpq \
+    --with-group-queue=smtpq
+
+make
+make DESTDIR="$1" install
+
+install -Dm755 opensmtpd.run "$1/etc/sv/opensmtpd/run"

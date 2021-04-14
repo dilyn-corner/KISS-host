@@ -1,0 +1,8 @@
+bison make
+filter-rspamd
+fts
+libasr
+libevent
+libressl
+rspamd
+zlib

@@ -1,0 +1,22 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+cmake -B build \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_C_FLAGS="$CFLAGS" \
+    -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
+    -DCONFDIR=/etc/rspamd \
+    -DRUNDIR=/run/rspamd \
+    -DRSPAMD_USER=rspamd \
+    -DRSPAMD_GROUP=rspamd \
+    -DENABLE_PCRE2=ON \
+    -DENABLE_REDIRECTOR=ON \
+    -DENABLE_URL_INCLUDE=ON \
+    -G Ninja
+
+ninja -C build
+ninja -C build install
+
+install -Dm755 rspamd.run "$1/etc/sv/rspamd/run"

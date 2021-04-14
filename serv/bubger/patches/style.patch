@@ -1,0 +1,21 @@
+diff --git a/html.c b/html.c
+index 34ffb16..1de66f5 100644
+--- a/html.c
++++ b/html.c
+@@ -386,7 +386,7 @@ int htmlMessageClose(FILE *file) {
+ 
+ static int htmlStylesheet(FILE *file) {
+ 	if (baseStylesheet) {
+-		const char *template = Q(<link rel="stylesheet" href="[href]">);
++		const char *template = Q(<link rel="stylesheet" type="text/css" href="style.css">);
+ 		struct Variable vars[] = {
+ 			{ "href", baseStylesheet },
+ 			{0},
+@@ -419,6 +419,7 @@ int htmlThreadHead(FILE *file, const struct Envelope *envelope) {
+ 		<meta charset="utf-8">
+ 		<meta name="generator" content="[generator]">
+ 		<title>[subject]</title>
++        <link rel="stylesheet" type="text/css" href="style.css" />
+ 		<link rel="alternate" type="application/atom+xml" href="[atom]">
+ 		<link rel="alternate" type="application/mbox" href="[mbox]">
+ 		<meta name="viewport" content="width=device-width, initial-scale=1.0">

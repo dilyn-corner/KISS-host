@@ -1,0 +1,31 @@
+#!/bin/sh -e
+
+conf() {
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --localstatedir=/var \
+        --mandir=/usr/share/man \
+        --infodir=/usr/share/info \
+        --with-rundir=/run/dovecot \
+        --with-ssldir=/etc/ssl/dovecot \
+        --with-sqlite
+}
+
+conf
+make
+make DESTDIR="$1" install
+
+(
+    cd dovecot-pigeonhole
+
+    conf \
+        --with-dovecot="$1" \
+        --with-moduledir=/usr/lib/dovecot/modules
+
+    make
+    make DESTDIR="$1" install
+)
+
+
+install -Dm755 dovecot.run "$1/etc/sv/dovecot/run"

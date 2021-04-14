@@ -1,0 +1,17 @@
+cmake   make
+curl
+expat
+file
+glib
+icu
+libevent
+libsodium
+lua
+luajit
+pcre2
+perl    make
+pkgconf make
+ragel   make
+redis
+samurai make
+sqlite

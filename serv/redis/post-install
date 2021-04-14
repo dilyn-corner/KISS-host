@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Make a user and group
+addgroup -S redis 2>/dev/null
+adduser -S -D -H -h /var/lib/redis -s /bin/false -G redis -g redis redis 2>/dev/null
+
+# Otherwise we will face failures
+chown redis:redis /etc/sentinal.conf
+
+# This should exist for logging
+install -d -o redis -g redis /var/log/redis

@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+export GOPATH="$PWD/go"
+export GO111MODULE=on
+
+go build \
+    -modcacherw \
+    -trimpath
+
+install -Dm755 filter-rspamd "$1/usr/lib/opensmtpd/filter-rspamd"

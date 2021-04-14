@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Make a user and group
+addgroup -S rspamd 2>/dev/null
+adduser -S -D -H -h /var/lib/rspamd -s /bin/nologin -G rspamd -g rspamd rspamd 2>/dev/null
+
+# Create our folders for logging and monitoring
+install -Dm750 -o rspamd -g rspamd /var/lib/rspamd
+install -Dm750 -o rspamd -g rspamd /var/log/rspamd

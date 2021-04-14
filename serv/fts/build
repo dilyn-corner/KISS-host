@@ -1,0 +1,15 @@
+#!/bin/sh -e
+
+cd "musl-fts-$2"
+autoreconf -sfi
+
+./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --mandir=/usr/share/man \
+    --localstatedir=/var
+
+make
+make DESTDIR="$1" install
+
+install -Dm644 musl-fts.pc "$1/usr/lib/pkgconfig/libfts.pc"
