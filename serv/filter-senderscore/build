@@ -4,4 +4,4 @@ export GO111MODULE=off
 
 go build
 
-install -Dm555 filter-senderscore "$1/usr/bin/filter-senderscore"
+install -Dm755 filter-senderscore "$1/usr/libexec/opensmtpd/filter-senderscore"
