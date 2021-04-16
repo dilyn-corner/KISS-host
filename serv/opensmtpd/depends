@@ -1,5 +1,4 @@
 bison make
-filter-rspamd
 fts
 libasr
 libevent
