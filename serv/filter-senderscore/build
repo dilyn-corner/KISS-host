@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+go build
+
+install -Dm555 filter-senderscore "$1/usr/bin/filter-senderscore"
